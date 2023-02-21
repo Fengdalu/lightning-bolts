@@ -76,7 +76,7 @@ class AsynchronousLoader:
                 # Can only do asynchronous transfer if we use pin_memory
                 if not sample.is_pinned():
                     sample = sample.pin_memory()
-                return sample.to(self.device, non_blocking=True)
+            return sample.to(self.device, non_blocking=True)
         elif elem_type.__module__ == "numpy" and elem_type.__name__ != "str_" and elem_type.__name__ != "string_":
             if elem_type.__name__ == "ndarray" and self.np_str_obj_array_pattern.search(sample.dtype.str) is not None:
                 return self.load_instance(sample)
